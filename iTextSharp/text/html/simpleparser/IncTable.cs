@@ -156,16 +156,6 @@ namespace iTextSharp.text.html.simpleparser {
                 }
             }
 
-            Debug.WriteLine(relativeWidths100[0]);
-            Debug.WriteLine(" | ");
-            Debug.Write(relativeWidths100[1]);
-            Debug.WriteLine(" | ");
-            Debug.Write(relativeWidths100[2]);
-
-            /*relativeWidths[0] = 0.1f;
-            relativeWidths[1] = 0.45f;
-            relativeWidths[2] = 0.45f;*/
-
             table.SetWidths(relativeWidths100);
 
             return table;

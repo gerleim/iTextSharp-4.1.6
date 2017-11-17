@@ -102,9 +102,13 @@ namespace iTextSharp.text.html.simpleparser {
 
             value = props["width"];
             if (value != null)
+            {
+                if (value.EndsWith("%"))
+                    value = value.Substring(0, value.Length - 1);
+
                 cell.CustomWidth = float.Parse(value, System.Globalization.NumberFormatInfo.InvariantInfo);
-            else
-                cell.CustomWidth = -1f;
+            }
+            else cell.CustomWidth = -1f;
         }
         
         public bool Add(Object o) {
