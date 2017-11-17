@@ -50,6 +50,8 @@ using iTextSharp.text.pdf;
  */
 
 namespace iTextSharp.text.html.simpleparser {
+    using System.Diagnostics;
+    using System.Linq;
 
     /**
     *
@@ -93,14 +95,31 @@ namespace iTextSharp.text.html.simpleparser {
         }
         
         public PdfPTable BuildTable() {
+
             if (rows.Count == 0)
                 return new PdfPTable(1);
-            int ncol = 0;
-            ArrayList c0 = (ArrayList)rows[0];
-            for (int k = 0; k < c0.Count; ++k) {
-                ncol += ((PdfPCell)c0[k]).Colspan;
+
+            int numberOfColumns = 0;
+
+            ArrayList columnsOfFirstRow = (ArrayList)rows[0];
+
+            float[] relativeWidths = new float[columnsOfFirstRow.Count];
+            int numberOfEmpyWidths = 0;
+            float sumColumnWidths = 0;
+
+
+            for (int k = 0; k < columnsOfFirstRow.Count; ++k)
+            {
+                numberOfColumns += ((PdfPCell)columnsOfFirstRow[k]).Colspan;
+
+                relativeWidths[k] = ((PdfPCell)columnsOfFirstRow[k]).CustomWidth;
+                if (Math.Abs(relativeWidths[k] - (-1)) > 0.01)
+                    sumColumnWidths += relativeWidths[k];
+                else
+                    numberOfEmpyWidths++;
             }
-            PdfPTable table = new PdfPTable(ncol);
+
+            PdfPTable table = new PdfPTable(numberOfColumns);
             String width = (String)props["width"];
             if (width == null)
                 table.WidthPercentage = 100;
@@ -112,12 +131,43 @@ namespace iTextSharp.text.html.simpleparser {
                     table.LockedWidth = true;
                 }
             }
+            
             for (int row = 0; row < rows.Count; ++row) {
                 ArrayList col = (ArrayList)rows[row];
                 for (int k = 0; k < col.Count; ++k) {
                     table.AddCell((PdfPCell)col[k]);
                 }
             }
+
+            float[] relativeWidths100 = new float[relativeWidths.Length];
+            for (int i = 0; i < relativeWidths.Length; i++)
+            {
+                if (Math.Abs(relativeWidths[i] - (-1)) > 0.01)
+                    if (sumColumnWidths <= 100)
+                        relativeWidths100[i] = relativeWidths[i] / 100;
+                    else
+                        relativeWidths100[i] = relativeWidths[i] / sumColumnWidths;
+                else
+                {
+                    if (sumColumnWidths <= 100)
+                        relativeWidths100[i] = (100 - sumColumnWidths) / numberOfEmpyWidths / 100;
+                    else
+                        relativeWidths100[i] = sumColumnWidths / numberOfEmpyWidths / 100;
+                }
+            }
+
+            Debug.WriteLine(relativeWidths100[0]);
+            Debug.WriteLine(" | ");
+            Debug.Write(relativeWidths100[1]);
+            Debug.WriteLine(" | ");
+            Debug.Write(relativeWidths100[2]);
+
+            /*relativeWidths[0] = 0.1f;
+            relativeWidths[1] = 0.45f;
+            relativeWidths[2] = 0.45f;*/
+
+            table.SetWidths(relativeWidths100);
+
             return table;
         }
     }

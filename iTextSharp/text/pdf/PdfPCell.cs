@@ -823,5 +823,7 @@ namespace iTextSharp.text.pdf {
                 height = MinimumHeight;
             return height;
         }
+
+        public float CustomWidth { get; set; }
     }
 }

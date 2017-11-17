@@ -99,6 +99,12 @@ namespace iTextSharp.text.html.simpleparser {
             cell.UseDescender = true;
             value = props["bgcolor"];
             cell.BackgroundColor = Markup.DecodeColor(value);
+
+            value = props["width"];
+            if (value != null)
+                cell.CustomWidth = float.Parse(value, System.Globalization.NumberFormatInfo.InvariantInfo);
+            else
+                cell.CustomWidth = -1f;
         }
         
         public bool Add(Object o) {
