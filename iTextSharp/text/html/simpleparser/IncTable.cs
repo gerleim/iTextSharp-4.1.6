@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
-using iTextSharp.text;
+
+
+using iTextSharp.text.html.Extras;
 using iTextSharp.text.pdf;
 /*
  * Copyright 2004 Paulo Soares
@@ -49,10 +51,8 @@ using iTextSharp.text.pdf;
  * http://www.lowagie.com/iText/
  */
 
-namespace iTextSharp.text.html.simpleparser {
-    using System.Diagnostics;
-    using System.Linq;
-
+namespace iTextSharp.text.html.simpleparser
+{
     /**
     *
     * @author  psoares
@@ -93,7 +93,7 @@ namespace iTextSharp.text.html.simpleparser {
                 return rows;
             }
         }
-        
+
         public PdfPTable BuildTable() {
 
             if (rows.Count == 0)
@@ -103,20 +103,13 @@ namespace iTextSharp.text.html.simpleparser {
 
             ArrayList columnsOfFirstRow = (ArrayList)rows[0];
 
-            float[] relativeWidths = new float[columnsOfFirstRow.Count];
-            int numberOfEmpyWidths = 0;
-            float sumColumnWidths = 0;
-
+            CellWidths cellWidths = new CellWidths();
 
             for (int k = 0; k < columnsOfFirstRow.Count; ++k)
             {
+                int colSpan = ((PdfPCell)columnsOfFirstRow[k]).Colspan;
                 numberOfColumns += ((PdfPCell)columnsOfFirstRow[k]).Colspan;
-
-                relativeWidths[k] = ((PdfPCell)columnsOfFirstRow[k]).CustomWidth;
-                if (Math.Abs(relativeWidths[k] - (-1)) > 0.01)
-                    sumColumnWidths += relativeWidths[k];
-                else
-                    numberOfEmpyWidths++;
+                cellWidths.Add(((PdfPCell)columnsOfFirstRow[k]).CustomWidth, colSpan);
             }
 
             PdfPTable table = new PdfPTable(numberOfColumns);
@@ -139,24 +132,7 @@ namespace iTextSharp.text.html.simpleparser {
                 }
             }
 
-            float[] relativeWidths100 = new float[relativeWidths.Length];
-            for (int i = 0; i < relativeWidths.Length; i++)
-            {
-                if (Math.Abs(relativeWidths[i] - (-1)) > 0.01)
-                    if (sumColumnWidths <= 100)
-                        relativeWidths100[i] = relativeWidths[i] / 100;
-                    else
-                        relativeWidths100[i] = relativeWidths[i] / sumColumnWidths;
-                else
-                {
-                    if (sumColumnWidths <= 100)
-                        relativeWidths100[i] = (100 - sumColumnWidths) / numberOfEmpyWidths / 100;
-                    else
-                        relativeWidths100[i] = sumColumnWidths / numberOfEmpyWidths / 100;
-                }
-            }
-
-            table.SetWidths(relativeWidths100);
+            table.SetWidths(cellWidths.GetRelativeWiths());
 
             return table;
         }

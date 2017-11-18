@@ -8,7 +8,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class HtmlTableWidth
+    public class HtmlTableWidthTests
     {
         [TestMethod]
         public void Test_AllSet()
@@ -23,9 +23,15 @@
         }
 
         [TestMethod]
-        public void Test_TMoreThan100()
+        public void Test_MoreThan100()
         {
             Test("TableWidthMoreThan100");
+        }
+
+        [TestMethod]
+        public void Test_MoreThan100AndEmptyValues()
+        {
+            Test("TableWidthMoreThan100AndEmptyValues");
         }
 
         private void Test(string fileName)
