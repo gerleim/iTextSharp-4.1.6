@@ -11,13 +11,6 @@
     public class HtmlTableWidthTests
     {
         [TestMethod]
-        public void Test_AllSet1()
-        {
-            Test("TableWidthAllSet");
-        }
-
-
-        [TestMethod]
         public void Test_AllSet()
         {
             Test("TableWidthAllSet");

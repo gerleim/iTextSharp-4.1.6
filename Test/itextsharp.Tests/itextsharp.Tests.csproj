@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlTableWidthTests.cs" />
-    <Compile Include="iTextSharp\text\html\simpleparser\HTMLWorkerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +80,6 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "../../../../references/resources" resources /I</PostBuildEvent>
+    <PostBuildEvent>xcopy "../../../../references/resources" resources /I /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
