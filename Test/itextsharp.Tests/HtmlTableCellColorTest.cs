@@ -9,42 +9,18 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class HtmlTableWidthTests
+    public class HtmlTableCellColorTest
     {
         [TestMethod]
-        public void Test_AllSet()
+        public void Test_Row()
         {
-            Test("TableWidthAllSet");
+            Test("TableRowColor");
         }
 
         [TestMethod]
-        public void Test_EmptyValues()
+        public void Test_Cell()
         {
-            Test("TableWidthEmptyValues");
-        }
-
-        [TestMethod]
-        public void Test_MoreThan100()
-        {
-            Test("TableWidthMoreThan100");
-        }
-
-        [TestMethod]
-        public void Test_MoreThan100AndEmptyValues()
-        {
-            Test("TableWidthMoreThan100AndEmptyValues");
-        }
-
-        [TestMethod]
-        public void Test_AllSet_Span()
-        {
-            Test("TableWidthAllSet_Span");
-        }
-
-        [TestMethod]
-        public void Test_InsideTable_Span()
-        {
-            Test("TableWidthInsideTable_Span");
+            Test("TableCellColor");
         }
 
         public static void Test(string fileName)
@@ -61,7 +37,7 @@
 
                 File.WriteAllBytes($"{fileName}.pdf", pdf);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Assert.Fail(ex.Message);
             }

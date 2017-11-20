@@ -56,6 +56,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlTableCellColorTest.cs" />
     <Compile Include="HtmlTableWidthTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,7 +70,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestInput\TableInsideTable_Span.html" />
+    <Content Include="TestInput\TableCellColor.html" />
+    <Content Include="TestInput\TableWidthInsideTable_Span.html" />
     <Content Include="TestInput\TableWidth.html" />
     <Content Include="TestInput\TableWidthAllSet.html" />
     <Content Include="TestInput\TableWidthAllSet_Span.html" />
