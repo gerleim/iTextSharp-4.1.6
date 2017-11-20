@@ -30,20 +30,34 @@
 
         public float[] GetRelativeWiths()
         {
-            float[] relativeWidths100 = new float[Count];
+            List<float> relativeWidths100 = new List<float>();
+
             for (int i = 0; i < Count; i++)
             {
+                float currentWith;
                 if (Math.Abs((int)(this[i].Width - (-1))) > 0.01)
-                    if (Sum <= 100) relativeWidths100[i] = this[i].Width / 100;
-                    else relativeWidths100[i] = this[i].Width / Sum;
+                { 
+                    if (Sum <= 100)
+                        currentWith = this[i].Width / 100;
+                    else
+                        currentWith = this[i].Width / Sum;
+                    }
                 else
                 {
-                    if (Sum <= 100) relativeWidths100[i] = (100 - Sum) / NumberOfEmpyWidths / 100;
-                    else relativeWidths100[i] = Sum / NumberOfEmpyWidths / 100;
+                    if (Sum <= 100)
+                        currentWith = (100 - Sum) / NumberOfEmpyWidths / 100;
+                    else
+                        currentWith = Sum / NumberOfEmpyWidths / 100;
+                }
+
+                float colspanWidth = currentWith / this[i].ColSpan;
+                for (int colSpans = 1; colSpans <= this[i].ColSpan; colSpans++)
+                {
+                    relativeWidths100.Add(colspanWidth);
                 }
             }
 
-            return relativeWidths100;
+            return relativeWidths100.ToArray();
         }
     }
 }

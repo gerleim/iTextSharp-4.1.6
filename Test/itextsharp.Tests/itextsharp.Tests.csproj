@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assembly\Assembly.cs" />
     <Compile Include="HtmlTableWidthTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,18 +58,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="M:\Sources\Manpower\Common\FizzCode.Library.Core\FizzCode.Library.Core.csproj">
-      <Project>{cd0437d0-a91a-487f-9271-25f1f991183b}</Project>
-      <Name>FizzCode.Library.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="M:\Sources\Manpower\Common\FizzCode.Library.HtmlToPdf\FizzCode.Library.HtmlToPdf.csproj">
       <Project>{988a5d33-c55d-436b-8a55-b681b37cf5df}</Project>
       <Name>FizzCode.Library.HtmlToPdf</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestInput\TableInsideTable_Span.html" />
     <Content Include="TestInput\TableWidth.html" />
     <Content Include="TestInput\TableWidthAllSet.html" />
+    <Content Include="TestInput\TableWidthAllSet_Span.html" />
     <Content Include="TestInput\TableWidthEmptyValues.html" />
     <Content Include="TestInput\TableWidthMoreThan100.html" />
     <Content Include="TestInput\TableWidthMoreThan100AndEmptyValues.html" />

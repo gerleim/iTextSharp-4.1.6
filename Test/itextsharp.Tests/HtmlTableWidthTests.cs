@@ -34,11 +34,23 @@
             Test("TableWidthMoreThan100AndEmptyValues");
         }
 
+        [TestMethod]
+        public void Test_AllSet_Span()
+        {
+            Test("TableWidthAllSet_Span");
+        }
+
+        [TestMethod]
+        public void Test_InsideTable_Span()
+        {
+            Test("TableInsideTable_Span");
+        }
+
         private void Test(string fileName)
         {
             string pathToData = $"../../../TestInput/{fileName}.html";
 
-            string path = Assembly.AssemblyPath + pathToData;
+            string path = Assembly.Assembly.AssemblyPath + pathToData;
 
             string content = File.ReadAllText(path + pathToData);
 
