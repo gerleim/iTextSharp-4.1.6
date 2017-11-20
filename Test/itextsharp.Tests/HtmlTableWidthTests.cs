@@ -50,7 +50,7 @@
         {
             string pathToData = $"../../../TestInput/{fileName}.html";
 
-            string path = Assembly.Assembly.AssemblyPath + pathToData;
+            string path = Assembly.AssemblyPath + pathToData;
 
             string content = File.ReadAllText(path + pathToData);
 
