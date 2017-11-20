@@ -10,7 +10,7 @@
 
         public float Sum { get; set; }
 
-        public void Add(CellWidth cellWidth)
+        public new void Add(CellWidth cellWidth)
         {
             if (Math.Abs((int)(cellWidth.Width - (-1))) > 0.01) Sum += cellWidth.Width;
             else NumberOfEmpyWidths++;

@@ -4,6 +4,10 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itextsharp", "itextsharp.csproj", "{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C51A617-544B-4F9E-83EC-8EE4C1BF7B5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itextsharp.Tests", "Test\itextsharp.Tests\itextsharp.Tests.csproj", "{1689CED0-4AEC-45FB-819A-658DBE4CCACC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +18,16 @@ Global
 		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84C4FDD9-3ED7-453B-B9DA-B3ED52CB071C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1689CED0-4AEC-45FB-819A-658DBE4CCACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1689CED0-4AEC-45FB-819A-658DBE4CCACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1689CED0-4AEC-45FB-819A-658DBE4CCACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1689CED0-4AEC-45FB-819A-658DBE4CCACC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1689CED0-4AEC-45FB-819A-658DBE4CCACC} = {9C51A617-544B-4F9E-83EC-8EE4C1BF7B5E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A661D99A-4BAA-4F5B-BC5D-26F36CE0A260}
