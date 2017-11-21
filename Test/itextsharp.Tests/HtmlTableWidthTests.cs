@@ -47,6 +47,12 @@
             Test("TableWidthInsideTable_Span");
         }
 
+        [TestMethod]
+        public void Test_InsideTable_Span_2()
+        {
+            Test("TableWidthInsideTable_Span_2");
+        }
+
         public static void Test(string fileName)
         {
             try
